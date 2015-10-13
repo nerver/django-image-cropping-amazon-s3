@@ -6,7 +6,7 @@ class ImageCroppingMixin(object):
     def formfield_for_dbfield(self, db_field, **kwargs):
         crop_fields = getattr(self.model, 'crop_fields', {})
         if db_field.name in crop_fields:
-            target = crop_fields[db_field.name]
+            target = crop_fields[db_field.url]
             if target['fk_field']:
                 # it's a ForeignKey
                 kwargs['widget'] = widgets.CropForeignKeyWidget(
